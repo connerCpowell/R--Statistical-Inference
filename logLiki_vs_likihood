@@ -1,0 +1,5 @@
+theta . grid <− seq( 1 , 4 , length = 500 ) likelihood <− theta . gridˆs ∗ exp( − n ∗ theta . grid ) #likelihood function
+par( mfrow = c( 1 , 2 ) ) #better looking side by side
+plot( theta . grid , likelihood , type = ’ l ’ , xlab = ’ theta ’ , ylab = ’ Likelihood ’ , lwd = 2 )
+plot( theta . grid , log( likelihood ) , type = ’ l ’ , xlab = ’ theta ’ , ylab = ’Log Likelihood ’ , lwd = 2 )
+dev. off ( )
