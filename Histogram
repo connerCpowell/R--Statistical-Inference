@@ -1,0 +1,5 @@
+#creating data set y <− c( 1 , 2 , 1 , 1 , 4 , 1 , 2 , 2 , 0 , 3 , 6 , 2 , 1 , 3 ) print( n <− length( y ) ) #output : 14
+hist ( y , breaks = ( 0:7 ) − 0.5 , prob = T, xlab = ’LoS ’ , main = ’ ’ )
+mean( y ) #output : 2.071429
+sort( y ) # 0 1 1 1 1 1 2 2 2 2 3 3 4 6
+print( s <− sum( y ) ) #set s= sum, 29 print( theta .hat <− s / n ) #set theta . hat , 2.071429 print( se . theta . hat <− sqrt( theta .hat / n ) ) #set se , 0.3846546 print( CI.95 <− c( theta .hat − qnorm( 1 − alpha / 2 ) ∗ se . theta .hat , theta .hat + qnorm( 1 − alpha / 2 ) ∗ se . theta . hat ) ) #output for CI.95 1.317519 2.825338
