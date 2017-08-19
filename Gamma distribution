@@ -1,0 +1,14 @@
+alpha <− 0.01 beta <− 0.01 s <− 29 n <− 14 # posterior is gamma( alpha + s , beta + n ) # here this is gamma( 29.01 , 14.01 )
+theta . grid <− seq( 0 , 4 , length = 500 ) # we want shape , rate not shape , scale
+par( mfrow = c( 1 , 1 ) )
+plot( theta . grid , dgamma( theta . grid , shape = alpha + s , rate = beta + n ) , type = ’ l ’ , lwd = 2 , xlab = ’ theta ’ , ylab = ’ Density ’ )
+abline( v = ( alpha + s ) / ( beta + n ) , col = ’ red ’ , lwd = 2 )
+lines ( theta . grid , dgamma( theta . grid , shape = alpha ,rate = beta ) , lty = 2 , lwd = 2 , col = ’ blue ’ )
+lines ( theta . grid , dgamma( theta . grid , shape = s + 1 , rate = n ) , lty = 3 , lwd = 2 , col = ’ red ’ )
+text( 0.5 , 0.8 , ’ prior ’ , lwd = 2 , col = ’ blue ’ )
+text( 1.25 , 0.9 , ’ posterior ’ , lwd = 2 , col = ’ black ’ )
+text( 3 , 0.7 , ’ likelihood ’ , lwd = 2 , col = ’ red ’ )
+dev. off ( )
+alpha . posterior <− alpha + s beta . posterior <− beta + n print( posterior .mean <− alpha . posterior / beta . posterior ) #2.070664 print( theta .hat <− s / n ) #2.071429 print( posterior .sd <− sqrt( alpha . posterior ) / beta . posterior ) #0.3844463
+print( se . theta . hat <− sqrt( theta .hat / n ) ) #0.3846546 c( theta .hat − 1.96 ∗ se . theta .hat , theta .hat + 1.96 ∗ se . theta . hat ) c( qgamma( 0.025 , alpha + s , beta + n ) , qgamma( 0.975 , alpha + s , beta + n ) ) #( 1.3869 , 2.8894 )
+
