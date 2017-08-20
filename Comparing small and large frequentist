@@ -1,0 +1,19 @@
+
+alpha <- .05
+
+sigma.sq.mle <- 191.8
+
+n <-672
+
+SE <- qnorm(1-alpha/2)sigma.sq.mle * sqrt(2/n)
+
+
+c(sigma.sq.mle - SE, sigma.sq.mle + SE)
+
+c(n * sigma.sq.mle /qchisqq(1-alpha/2, n),  n * sigma.sq.mle /qchisqq(alpha/2, n))
+
+# computing Bayesain
+
+library(pscl)
+
+c(qigamma(alpha/2, n/2, n*sigma.sq.mle/2), qigamma(1-alpha/2, n/2, n*sigma.sq.mle/2) )
