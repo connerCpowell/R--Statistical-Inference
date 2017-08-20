@@ -1,0 +1,23 @@
+hist( y, breaks = 100, main = 'U.S. Family Income (2009)',
+  xlab = 'Income', ylab = 'Density', prob = T, 
+  ylim = c( 0, 0.012 ) )
+
+w <- log( y )
+
+mu.hat.mle <- mean( w )
+
+sigma.hat.mle <- sd( w ) * sqrt( ( n - 1 ) / n ) 
+
+library( stats )
+
+y.grid <- seq( 0, 1000, length = 500 )
+
+lines( y.grid, dlnorm( y.grid, mu.hat.mle, sigma.hat.mle ),
+  lty = 1, lwd = 3, col = 'red' )
+
+text( 200, 0.011, 'Lognormal', col = 'red' )
+
+lines( y.grid, dgamma( y.grid, shape = 1.305, rate = 0.01575 ),
+  lty = 1, lwd = 3, col = 'blue' )
+
+text( 250, 0.004, 'Gamma', col = 'blue' )
