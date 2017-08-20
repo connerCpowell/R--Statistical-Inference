@@ -1,0 +1,46 @@
+dpareto <- function(alpha, beta, theta) {
+  
+  density <- 0
+  
+  if (theta >= beta) {density <- alpha * (beta^alpha) * theta^(-(alpha+1) ) }
+  
+  return( density )
+  
+}
+
+n <- 11
+
+m <- 5.1
+
+dpareto( n - 1, m, 6)
+
+n.grid <- 500
+
+theta.grid <- seq(0, 10, length = n.grid )
+
+likelihood.grid <- rep( NA, n.grid )
+
+likelihoo.grid <- rep( NA, n.grid )
+
+lihiem.grid <- rep( NA, n.grid )
+
+for ( i in 1:n.grid ) {
+  
+  likelihood.grid[ i ] <- dpareto( n-1, m, theta.grid[ i ])
+  
+  likelihoo.grid[ i ] <- dpareto( 2.5, 4, theta.grid[ i ])
+  
+  lihiem.grid[ i ] <- dpareto( 13.5, m, theta.grid[ i ])
+}
+
+plot( theta.grid, likelihood.grid, type = 'l', lwd = 2, col = 'blue', xlab = 'theta', ylab = 'Density')
+
+lines( theta.grid, likelihoo.grid, type = 'l', lwd = 2, col = 'red')
+
+lines( theta.grid, lihiem.grid, type = 'l', lwd = 2, col = 'black')
+
+text ( 3.6, 0.45, 'prior', col = 'red', cex = 1.25)
+
+text ( 4.5, 0.8, 'posterior', cex = 1.25)
+
+text ( 6, 1.5, 'likelihood', col = 'blue', cex = 1.25)
