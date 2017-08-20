@@ -1,0 +1,35 @@
+scaled.inverse.chisq.density <- 
+  function( nu.0, sigma.0.squared, sigma.squared ) {
+    
+    log.density <- ( nu.0 / 2 ) * log( nu.0 / 2 ) - lgamma( nu.0 / 2 ) +
+      ( nu.0 / 2 ) * log( sigma.0.squared ) - ( 1 + nu.0 / 2 ) *
+      log( sigma.squared ) - nu.0 * sigma.0.squared / 
+      ( 2 * sigma.squared )
+    
+    return( exp( log.density ) )
+    
+  }
+
+sigma.squared.grid <- seq(160, 240, length = 500)
+
+n = 672
+
+sigma.hat.squared <- 191.8
+
+plot( sigma.squared.grid, scaled.inverse.chisq.density( n, sigma.hat.squared, sigma.squared.grid ), 
+      type = 'l', lwd = 2, xlab = 'sigma squared', ylab = 'Density', main = 'Problem 2C  ')
+
+lines( sigma.squared.grid, 2.5 / sigma.squared.grid, lwd = 2, lty = 2, col = 'red')
+
+lines( sigma.squared.grid, scaled.inverse.chisq.density(n-2, n*sigma.hat.squared / (n-2), sigma.squared.grid ), 
+       lwd = 2, lty = 3, col = 'blue')
+
+text ( 225, 0.014, 'prior', col = 'red', cex = 1.25)
+
+text ( 179, 0.032, 'posterior', cex = 1.25)
+
+text ( 208, 0.026, 'likelihood', col = 'blue', cex = 1.25)
+
+abline( v = 191.8, col = 'black', lwd = 2 )
+
+text ( 195, .01, '(Sigma^2)')
